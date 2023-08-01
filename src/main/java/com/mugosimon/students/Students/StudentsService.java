@@ -198,4 +198,32 @@ public class StudentsService {
         }
     }
 
+    public EntityResponse fetchByStudentCode(String studentCode){
+        EntityResponse entityResponse = new EntityResponse<>();
+        try{
+            log.info("====> fetch by student code <===");
+            Optional<Students> optionalStudents = studentsRepository.findByStudentCode(studentCode);
+            if (optionalStudents.isPresent()){
+                entityResponse.setStatusCode(HttpStatus.OK.value());
+                entityResponse.setMessage("Deleted Successfully");
+                entityResponse.setEntity(optionalStudents);
+                //
+                return entityResponse;
+            }else {
+                log.warn(" >+++++> student not found <+++++<");
+                entityResponse.setEntity(null);
+                entityResponse.setMessage("no record found with student-code: " +studentCode);
+                entityResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
+                //
+                return entityResponse;
+            }
+        }catch (Exception exception) {
+            exception.printStackTrace();
+            log.error(">+++++> error while deleting  student <++++++<: " + exception.getLocalizedMessage());
+            entityResponse.setMessage(HttpStatus.EXPECTATION_FAILED.getReasonPhrase());
+            entityResponse.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            return entityResponse;
+        }
+    }
+
 }

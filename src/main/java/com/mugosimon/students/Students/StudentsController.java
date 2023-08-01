@@ -42,4 +42,9 @@ public class StudentsController {
     public EntityResponse delete(@RequestParam("id") Long id){
         return studentsService.delete(id);
     }
+
+    @GetMapping("/fetchByStudentCode")
+    public EntityResponse fetchByStudentCode(@RequestParam("studentCode") String studentCode){
+        return studentsService.fetchByStudentCode(studentCode);
+    }
 }
