@@ -13,5 +13,6 @@ public interface StudentsRepository
     @Query("SELECT s FROM Students s WHERE s.firstName = :firstName AND s.lastName = :lastName AND s.middleName = :middleName")
     List<Students> findByFirstNameAndLastNameAndMiddleName(String firstName, String lastName, String middleName);
 
+    //njaa
     Optional<Students> findByStudentCode(String studentCode);
 }
