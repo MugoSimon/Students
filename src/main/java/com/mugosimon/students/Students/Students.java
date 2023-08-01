@@ -41,4 +41,7 @@ public class Students {
     private String deletedBy = "-";
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Character deleted = 'N';
+    //
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Character something_else = 'N';
 }
