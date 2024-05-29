@@ -141,13 +141,10 @@ public class StudentsService {
                 students.setMiddleName(students.getMiddleName());
                 students.setStudentPhone(students.getStudentPhone());
                 students.setStudentEmail(students.getStudentEmail());
-                students.setStudentCode(existingDetails.getStudentCode());
-                students.setCreatedBy(existingDetails.getCreatedBy());
-                students.setCreatedOn(existingDetails.getCreatedOn());
-                students.setCreated(existingDetails.getCreated());
                 students.setStudentHome(students.getStudentHome());
 
-                entityResponse.setMessage("Modified Successfully");
+                entityResponse.setMessage("Successfully Modified " +students.getFirstName() +".");
+                log.info("Successfully Modified " +students.getFirstName() +".");
                 entityResponse.setEntity(studentsRepository.save(students));
                 entityResponse.setStatusCode(HttpStatus.OK.value());
                 return entityResponse;
@@ -205,7 +202,7 @@ public class StudentsService {
             Optional<Students> optionalStudents = studentsRepository.findByStudentCode(studentCode);
             if (optionalStudents.isPresent()){
                 entityResponse.setStatusCode(HttpStatus.OK.value());
-                entityResponse.setMessage("Deleted Successfully");
+                entityResponse.setMessage("Fetch Successfully");
                 entityResponse.setEntity(optionalStudents);
                 //
                 return entityResponse;
